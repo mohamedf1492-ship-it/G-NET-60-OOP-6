@@ -1,5 +1,155 @@
 ﻿namespace oop6
 {
+
+    #region part2
+    /*
+    enum TicketType
+    {
+        Standard,
+        VIP,
+        IMAX
+    }
+
+    struct SeatLocation
+    {
+        public char Row { get; set; }
+        public int Number { get; set; }
+
+        public SeatLocation(char row, int number)
+        {
+            Row = row;
+            Number = number;
+        }
+
+        public override string ToString()
+        {
+            return $"{Row}-{Number}";
+        }
+    }
+
+    class Ticket
+    {
+        private static int ticketCounter = 0;
+
+        private string movieName = "Unknown";
+        private double price = 50;
+
+        public int TicketId { get; }
+
+        public string MovieName
+        {
+            get { return movieName; }
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                    movieName = value;
+            }
+        }
+
+        public TicketType Type { get; set; }
+
+        public SeatLocation Seat { get; set; }
+
+        public double Price
+        {
+            get { return price; }
+            set
+            {
+                if (value > 0)
+                    price = value;
+            }
+        }
+
+        public double PriceAfterTax
+        {
+            get { return Price * 1.14; }
+        }
+
+        public Ticket()
+        {
+            TicketId = ++ticketCounter;
+        }
+
+        public static int GetTotalTicketsSold()
+        {
+            return ticketCounter;
+        }
+    }
+
+    class Cinema
+    {
+        private Ticket[] tickets = new Ticket[20];
+
+        public Ticket this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index < tickets.Length)
+                    return tickets[index];
+
+                return null;
+            }
+            set
+            {
+                if (index >= 0 && index < tickets.Length)
+                    tickets[index] = value;
+            }
+        }
+
+        public Ticket GetMovieByName(string movieName)
+        {
+            foreach (Ticket ticket in tickets)
+            {
+                if (ticket != null &&
+                    ticket.MovieName.Equals(
+                        movieName,
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    return ticket;
+                }
+            }
+
+            return null;
+        }
+
+        public bool AddTicket(Ticket t)
+        {
+            for (int i = 0; i < tickets.Length; i++)
+            {
+                if (tickets[i] == null)
+                {
+                    tickets[i] = t;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
+    static class BookingHelper
+    {
+        private static int referenceCounter = 0;
+
+        public static double CalcGroupDiscount(
+            int numberOfTickets, double pricePerTicket)
+        {
+            double total = numberOfTickets * pricePerTicket;
+
+            if (numberOfTickets >= 5)
+                total *= 0.90;
+
+            return total;
+        }
+
+        public static string GenerateBookingReference()
+        {
+            referenceCounter++;
+            return $"BK-{referenceCounter}";
+        }
+    }
+    */
+    #endregion
     internal class Program
     {
         static void Main(string[] args)
@@ -104,6 +254,99 @@
 
 
             #endregion
+
+            #region part2
+            /*
+             Cinema cinema = new Cinema();
+
+            Console.WriteLine("========== Ticket Booking ==========");
+
+            for (int i = 1; i <= 3; i++)
+            {
+                Console.WriteLine($"\nEnter data for Ticket {i}:");
+
+                Ticket ticket = new Ticket();
+
+                Console.Write("Movie Name: ");
+                ticket.MovieName = Console.ReadLine();
+
+                Console.Write("Ticket Type (0=Standard, 1=VIP, 2=IMAX): ");
+                int type = int.Parse(Console.ReadLine());
+
+                if (type >= 0 && type <= 2)
+                    ticket.Type = (TicketType)type;
+                else
+                    ticket.Type = TicketType.Standard;
+
+                Console.Write("Seat Row (A-Z): ");
+                char row = char.ToUpper(
+                    Console.ReadLine()[0]);
+
+                Console.Write("Seat Number: ");
+                int number = int.Parse(Console.ReadLine());
+
+                ticket.Seat = new SeatLocation(row, number);
+
+                Console.Write("Price: ");
+                ticket.Price = double.Parse(Console.ReadLine());
+
+                if (cinema.AddTicket(ticket))
+                    Console.WriteLine("Ticket added successfully.");
+                else
+                    Console.WriteLine("Cinema is full.");
+            }
+
+            Console.WriteLine("\n========== All Tickets ==========");
+
+            for (int i = 0; i < 3; i++)
+            {
+                Ticket ticket = cinema[i];
+
+                if (ticket != null)
+                {
+                    Console.WriteLine(
+                        $"Ticket #{ticket.TicketId} | " +
+                        $"{ticket.MovieName} | {ticket.Type} | " +
+                        $"Seat: {ticket.Seat} | " +
+                        $"Price: {ticket.Price:F2} EGP | " +
+                        $"After Tax: {ticket.PriceAfterTax:F2} EGP");
+                }
+            }
+
+            Console.Write("\nEnter movie name to search: ");
+            string searchName = Console.ReadLine();
+
+            Ticket found = cinema.GetMovieByName(searchName);
+
+            if (found != null)
+            {
+                Console.WriteLine(
+                    $"Found: {found.MovieName} | " +
+                    $"{found.Type} | Seat: {found.Seat}");
+            }
+            else
+            {
+                Console.WriteLine("Movie not found.");
+            }
+
+            Console.WriteLine(
+                $"\nTotal Tickets Sold: {Ticket.GetTotalTicketsSold()}");
+
+            Console.WriteLine(
+                $"Booking Reference 1: {BookingHelper.GenerateBookingReference()}");
+
+            Console.WriteLine(
+                $"Booking Reference 2: {BookingHelper.GenerateBookingReference()}");
+
+            double groupTotal =
+                BookingHelper.CalcGroupDiscount(5, 80);
+
+            Console.WriteLine(
+                $"Group Discount Total (5 tickets): {groupTotal:F2} EGP");
+            */
+            #endregion
+
+
         }
     }
 }
